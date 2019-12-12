@@ -16,7 +16,6 @@ let favorites = [
       "http://img2.chinadaily.com.cn/images/201902/23/5c70e0baa3106c65fffb5e31.jpeg"
   }
 ];
-
 function addPlace(req, res) {
   places.push(req.body);
   res.status(200).json(places);
@@ -33,9 +32,10 @@ function getFavorites(req, res) {
   res.status(200).json(favorites);
 }
 
+
 module.exports = {
   addPlace,
   getPlaces,
   addToFavorites,
-  getFavorites
+  getFavorites,
 };
