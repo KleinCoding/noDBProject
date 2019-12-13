@@ -1,5 +1,5 @@
 import React from "react";
-import PlacesView from "./components/PlacesView";
+import Calculator from "./components/Calculator";
 import axios from "axios";
 import "./reset.css";
 import "./styles/App.css";
@@ -21,13 +21,6 @@ function Options({ options }) {
   ));
 }
 
-
-// function calculateNutrition(){
-//   if (this.state.selectedMeat === 'Ham'){
-//   this.setState(this.state.calories = this.state.calories + this.state.meats[0].calories)
-//   }
-//   console.log('did calories go up?')
-// }
 
 /// DROP DOWN TESTING ABOVE
 
@@ -57,7 +50,7 @@ class App extends React.Component {
     };
     this.updatePlaces = this.updatePlaces.bind(this);
     this.updateFavorites = this.updateFavorites.bind(this);
-    // this.addCalories = this.addCalories.bind(this)
+  
   }
 
 
@@ -151,14 +144,14 @@ class App extends React.Component {
         <main>
           {this.state.currentView === "places" ? (
             <div className="app__entry">
-              <PlacesView
+              <Calculator
                 updateFavorites={this.updateFavorites}
                 places={this.state.places}
               />
               {/* <AddPlace updatePlaces={this.updatePlaces} /> */}
             </div>
           ) : (
-            <PlacesView
+            <Calculator
               showAddToFavButton={false}
               places={this.state.favorites}
             />
@@ -175,6 +168,7 @@ class App extends React.Component {
 
               
         />
+
 
       </div>
     );

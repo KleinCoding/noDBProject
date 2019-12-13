@@ -12,17 +12,17 @@ const meats = [
   {
     id: 3,
     value: "Turkey",
-    calories: 100
+    calories: 40
   },
   {
     id: 4,
     value: "Iguana",
-    calories: 100
+    calories: 130
   },
   {
     id: 5,
     value: "Salami",
-    calories: 100
+    calories: 10
   }
 ];
 const vegs= [
@@ -185,11 +185,20 @@ function getDrink(req, res) {
   res.status(200).json(drinks);
 }
 
+let caloriesVal = 0;
+let proteinVal = 0;
+let sodiumVal = 0;
+let transfatVal = 0;
+
 module.exports = {
   getMeat,
   getVeg,
   getSauce,
   getBread,
   getSide,
-  getDrink
+  getDrink,
+  caloriesVal,
+  proteinVal,
+  sodiumVal,
+  transfatVal
 };
