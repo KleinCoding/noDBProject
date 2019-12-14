@@ -10,44 +10,11 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 
-const columns = [
-  { id: 'name', label: 'Item', minWidth: 170 },
-  { id: 'code', label: 'Calories', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Protein',
-    minWidth: 170,
-    align: 'right',
-    format: value => value.toLocaleString(),
-  },
-  {
-    id: 'size',
-    label: 'Sodium',
-    minWidth: 170,
-    align: 'right',
-    format: value => value.toLocaleString(),
-  },
-  {
-    id: 'density',
-    label: 'Trans Fats',
-    minWidth: 170,
-    align: 'right',
-    format: value => value.toFixed(2),
-  },
-];
 
-function createData(name, code, population, size) {
-  const density = population / size;
+function createData(name, code, population, size, density) {
+
   return { name, code, population, size, density };
 }
-
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-
-];
 
 const useStyles = makeStyles({
   root: {
@@ -59,10 +26,48 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable(props) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const columns = [
+    { id: 'name', label: 'Item', minWidth: 170 },
+    { id: 'code', label: 'Calories', minWidth: 100 },
+    {
+      id: 'population',
+      label: 'Protein',
+      minWidth: 170,
+      align: 'right',
+      format: value => value.toLocaleString(),
+    },
+    {
+      id: 'size',
+      label: 'Sodium',
+      minWidth: 170,
+      align: 'right',
+      format: value => value.toLocaleString(),
+    },
+    {
+      id: 'density',
+      label: 'Trans Fats',
+      minWidth: 170,
+      align: 'right',
+      format: value => value.toFixed(),
+    },
+  ];
+  
+
+  const rows = [
+    createData(props.selectedBread, 'IT', 60483973, 301340),
+    createData(props.selectedMeat, 'US1', 327167434, 9833520),
+    createData(props.selectedVeg, 'US2', 111111, 111111),
+    createData(props.selectedSauce, 'US3', 11111111, 1111111),
+    createData(props.selectedDrink, 'US4', 11111111, 11111),
+    createData(props.selectedSide, 'US5', 111111111, 1111111111),
+    createData("Totals: ", props.caloriesCalc, props.proteinCalc, props.sodiumCalc, props.transfatsCalc)
+  ];
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -74,7 +79,7 @@ export default function StickyHeadTable() {
   };
 
 
-  
+
   return (
     <Paper className={classes.root}>
       <div className={classes.tableWrapper}>
@@ -122,3 +127,6 @@ export default function StickyHeadTable() {
     </Paper>
   );
 }
+
+
+

@@ -1,6 +1,9 @@
 import React from "react";
 import "../styles/Calculator.css";
 import axios from "axios";
+import Table from "../components/Table"
+
+// import Table from './src/components/Table';
 
 function Options({ options }) {
   return options.map(option => (
@@ -10,13 +13,24 @@ function Options({ options }) {
   ));
 }
 
+
+
 let caloriesVal = 0;
 let proteinVal = 0;
 let sodiumVal = 0;
 let transfatVal = 0;
 
+
+
 class Calculator extends React.Component {
-  constructor() {
+
+
+  sendThatData(calories, protein, sodium, transfats, eBread, eDrink, eMeat, eSauce, eSide, eVeg){
+  this.props.callbackFunc(calories, protein, sodium, transfats, eBread, eDrink, eMeat, eSauce, eSide, eVeg)
+  console.log("sending that data!", calories, protein, sodium, transfats)
+  
+}
+constructor() {
     super();
 
     this.state = {
@@ -39,9 +53,12 @@ class Calculator extends React.Component {
       selectedSide: "",
       selectedDrink: "",
       selectedSauce: "",
-      caloriesTemp: 0
+      caloriesTemp: 0,
+      proteinTemp: 0,
+      sodiumTemp: 0,
+      transfatTemp: 0,
     };
-    this.addToFavorites = this.addToFavorites.bind(this);
+    // this.addToFavorites = this.addToFavorites.bind(this);
     this.addCaloriesMeats = this.addCaloriesMeats.bind(this);
     this.addCaloriesBreads = this.addCaloriesBreads.bind(this);
     this.addCaloriesVegs = this.addCaloriesVegs.bind(this);
@@ -51,7 +68,12 @@ class Calculator extends React.Component {
     this.addEmUp = this.addEmUp.bind(this);
     this.restState = this.resetState.bind(this);
     this.setVals = this.setVals.bind(this);
+    this.sendThatData = this.sendThatData.bind(this)
+    // this.renderCalories = this.renderCalories.bind(this)
+
+    
   }
+
 
   ///NUTRITION FUNCTIONS BELOW
 
@@ -72,17 +94,24 @@ class Calculator extends React.Component {
     }
   }
 
+
+
   setVals() {
-    if(this.state.caloriesTemp >= 1){
-      this.setState({caloriesTemp: 0})}
+    if (this.state.caloriesTemp >= 1) {
+      this.setState({ caloriesTemp: 0 });
+      this.setState({ proteinTemp: 0 });
+      this.setState({ sodiumTemp: 0 });
+      this.setState({ transfatsTemp: 0 });
+    }
     console.log("values initialized with setVals", this.state.caloriesTemp);
     let caloriesVal = 0;
     let proteinVal = 0;
     let sodiumVal = 0;
     let transfatVal = 0;
     let caloriesTotal = 0;
-  
   }
+
+
 
 
   resetVals() {
@@ -94,23 +123,33 @@ class Calculator extends React.Component {
 
   addCaloriesBreads() {
     if (this.state.selectedMeat === "Wheat") {
-      
       let caloriesVal = (this.state.caloriesTemp += this.state.breads[1].calories);
-
+      let proteinVal = (this.state.proteinTemp += this.state.breads[1].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.breads[1].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.breads[1].transfats);
     }
     if (this.state.selectedMeat === "White") {
       let caloriesVal = (this.state.caloriesTemp += this.state.breads[2].calories);
-     
+      let proteinVal = (this.state.proteinTemp += this.state.breads[2].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.breads[2].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.breads[2].transfats);
     }
     if (this.state.selectedMeat === "Italian Herb") {
       let caloriesVal = (this.state.caloriesTemp += this.state.breads[3].calories);
-  
+      let proteinVal = (this.state.proteinTemp += this.state.breads[3].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.breads[3].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.breads[3].transfats);
     }
     if (this.state.selectedMeat === "Flatcarboard") {
       let caloriesVal = (this.state.caloriesTemp += this.state.breads[4].calories);
-
+      let proteinVal = (this.state.proteinTemp += this.state.breads[4].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.breads[4].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.breads[4].transfats);
     }
     let caloriesTotal = (this.state.caloriesTemp += caloriesVal);
+    let proteinTotal = (this.state.proteinTemp += proteinVal);
+    let sodiumTotal = (this.state.proteinTemp += sodiumVal);
+    let transfatTotal = (this.state.transfatTemp += transfatVal);
     console.log(
       this.state.caloriesTemp,
       "< - stateCaloriesTemp caloriesTotal var after breads -> ",
@@ -122,54 +161,74 @@ class Calculator extends React.Component {
 
   addCaloriesMeats() {
     if (this.state.selectedMeat === "Ham") {
-      
       let caloriesVal = (this.state.caloriesTemp += this.state.meats[1].calories);
-
+      let proteinVal = (this.state.proteinTemp += this.state.meats[1].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.meats[1].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.meats[1].transfats);
     }
     if (this.state.selectedMeat === "Turkey") {
       let caloriesVal = (this.state.caloriesTemp += this.state.meats[2].calories);
-
+      let proteinVal = (this.state.proteinTemp += this.state.meats[2].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.meats[2].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.meats[2].transfats);
     }
     if (this.state.selectedMeat === "Iguana") {
       let caloriesVal = (this.state.caloriesTemp += this.state.meats[3].calories);
-
+      let proteinVal = (this.state.proteinTemp += this.state.meats[3].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.meats[3].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.meats[3].transfats);
     }
     if (this.state.selectedMeat === "Salami") {
       let caloriesVal = (this.state.caloriesTemp += this.state.meats[4].calories);
- 
+      let proteinVal = (this.state.proteinTemp += this.state.meats[4].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.meats[4].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.meats[4].transfats);
     }
     let caloriesTotal = (this.state.caloriesTemp += caloriesVal);
+    let proteinTotal = (this.state.proteinTemp += proteinVal);
+    let sodiumTotal = (this.state.proteinTemp += sodiumVal);
+    let transfatTotal = (this.state.transfatTemp += transfatVal);
     console.log(
       this.state.caloriesTemp,
-      "< - stateCaloriesTemp caloriesTotal var after MEat -> ",
+      "< - stateCaloriesTemp calories Total var after Meat -> ",
       this.state.selectedMeat,
       caloriesTotal
     );
-    return caloriesTotal;
+    // return caloriesTotal;
   }
 
   addCaloriesVegs() {
     if (this.state.selectedVeg === "Lettuce") {
-      // this.setState({ caloriesTemp: this.state.meats[1].calories });
       let caloriesVal = (this.state.caloriesTemp += this.state.vegs[1].calories);
- 
+      let proteinVal = (this.state.proteinTemp += this.state.vegs[1].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.vegs[1].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.vegs[1].transfats);
     }
     if (this.state.selectedVeg === "Spinach") {
       let caloriesVal = (this.state.caloriesTemp += this.state.vegs[2].calories);
-      // console.log("did calories go up? - Turkey");
-      // this.setState({ calories: this.state.meats[2].calories += this.state.calories});
+      let proteinVal = (this.state.proteinTemp += this.state.vegs[2].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.vegs[2].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.vegs[2].transfats);
+
     }
     if (this.state.selectedVeg === "Bulbasaur") {
       let caloriesVal = (this.state.caloriesTemp += this.state.vegs[3].calories);
-      // console.log("did calories go up? - Iguana");
-      // this.setState({ calories: this.state.meats[3].calories += this.state.calories});
+      let proteinVal = (this.state.proteinTemp += this.state.vegs[3].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.vegs[3].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.vegs[3].transfats);
+
     }
     if (this.state.selectedVeg == "Onion") {
       let caloriesVal = (this.state.caloriesTemp += this.state.vegs[4].calories);
-      // console.log("did calories go up? - Salami");
-      // this.setState({ calories: this.state.meats[4].calories += this.state.calories});
+      let proteinVal = (this.state.proteinTemp += this.state.vegs[4].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.vegs[4].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.vegs[4].transfats);
+ 
     }
     let caloriesTotal = (this.state.caloriesTemp += caloriesVal);
+    let proteinTotal = (this.state.proteinTemp += proteinVal);
+    let sodiumTotal = (this.state.proteinTemp += sodiumVal);
+    let transfatTotal = (this.state.transfatTemp += transfatVal);
     console.log(
       this.state.caloriesTemp,
       "< - stateCaloriesTemp caloriesTotal var after Veg -> ",
@@ -182,18 +241,33 @@ class Calculator extends React.Component {
   addCaloriesSauces() {
     if (this.state.selectedSauce === "Vinaigrette") {
       let caloriesVal = (this.state.caloriesTemp += this.state.sauces[1].calories);
-
+      let proteinVal = (this.state.proteinTemp += this.state.sauces[1].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.sauces[1].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.sauces[1].transfats);
     }
     if (this.state.selectedSauce === "Mustard") {
       let caloriesVal = (this.state.caloriesTemp += this.state.sauces[2].calories);
+      let proteinVal = (this.state.proteinTemp += this.state.sauces[1].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.sauces[1].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.sauces[1].transfats);
     }
     if (this.state.selectedSauce === "Cream of people") {
       let caloriesVal = (this.state.caloriesTemp += this.state.sauces[3].calories);
+      let proteinVal = (this.state.proteinTemp += this.state.sauces[1].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.sauces[1].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.sauces[1].transfats);
     }
     if (this.state.selectedSauce === "Mayo") {
       let caloriesVal = (this.state.caloriesTemp += this.state.sauces[4].calories);
+      let proteinVal = (this.state.proteinTemp += this.state.sauces[4].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.sauces[4].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.sauces[4].transfats);
+      
     }
     let caloriesTotal = (this.state.caloriesTemp += caloriesVal);
+    let proteinTotal = (this.state.proteinTemp += proteinVal);
+    let sodiumTotal = (this.state.proteinTemp += sodiumVal);
+    let transfatTotal = (this.state.transfatTemp += transfatVal);
     console.log(
       this.state.caloriesTemp,
       "< - stateCaloriesTemp caloriesTotal var after Sauce -> ",
@@ -206,22 +280,34 @@ class Calculator extends React.Component {
   addCaloriesDrinks() {
     if (this.state.selectedDrink === "Coke") {
       let caloriesVal = (this.state.caloriesTemp += this.state.drinks[1].calories);
-      // console.log(
-      //   caloriesVal,
-      //   "did calories go up? - Sauce1 caloriesVal",
-      //   caloriesVal
-      // );
+      let proteinVal = (this.state.proteinTemp += this.state.drinks[1].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.drinks[1].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.drinks[1].transfats);
+      
+
     }
     if (this.state.selectedDrink === "Sprite") {
       let caloriesVal = (this.state.caloriesTemp += this.state.drinks[2].calories);
+      let proteinVal = (this.state.proteinTemp += this.state.drinks[2].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.drinks[2].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.drinks[2].transfats);
     }
     if (this.state.selectedDrink === "Sugarjuice") {
       let caloriesVal = (this.state.caloriesTemp += this.state.drinks[3].calories);
+      let proteinVal = (this.state.proteinTemp += this.state.drinks[3].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.drinks[3].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.drinks[3].transfats);
     }
     if (this.state.selectedDrink === "Salami Water") {
       let caloriesVal = (this.state.caloriesTemp += this.state.drinks[4].calories);
+      let proteinVal = (this.state.proteinTemp += this.state.drinks[4].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.drinks[4].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.drinks[4].transfats);
     }
     let caloriesTotal = (this.state.caloriesTemp += caloriesVal);
+    let proteinTotal = (this.state.proteinTemp += proteinVal);
+    let sodiumTotal = (this.state.proteinTemp += sodiumVal);
+    let transfatTotal = (this.state.transfatTemp += transfatVal);
     console.log(
       this.state.caloriesTemp,
       "< - stateCaloriesTemp caloriesTotal var after Drink -> ",
@@ -234,36 +320,47 @@ class Calculator extends React.Component {
   addCaloriesSides() {
     if (this.state.selectedSide === "Chocochip") {
       let caloriesVal = (this.state.caloriesTemp += this.state.sides[1].calories);
-      // console.log(
-      //   caloriesVal,
-      //   "did calories go up? - Side1 caloriesVal",
-      //   caloriesVal
-      // );
+      let proteinVal = (this.state.proteinTemp += this.state.sides[1].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.sides[1].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.sides[1].transfats);
     }
     if (this.state.selectedSide === "Macadamia nut") {
       let caloriesVal = (this.state.caloriesTemp += this.state.sides[2].calories);
+      let proteinVal = (this.state.proteinTemp += this.state.sides[2].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.sides[2].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.sides[2].transfats);
     }
     if (this.state.selectedSide === "Chips") {
       let caloriesVal = (this.state.caloriesTemp += this.state.sides[3].calories);
+      let proteinVal = (this.state.proteinTemp += this.state.sides[3].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.sides[3].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.sides[3].transfats);
     }
     if (this.state.selectedSide === "Death") {
       let caloriesVal = (this.state.caloriesTemp += this.state.sides[4].calories);
+      let proteinVal = (this.state.proteinTemp += this.state.sides[4].protein);
+      let sodiumVal = (this.state.sodiumTemp += this.state.sides[4].sodium);
+      let transfatVal = (this.state.transfatTemp += this.state.sides[4].transfats);
     }
     let caloriesTotal = (this.state.caloriesTemp += caloriesVal);
+    let proteinTotal = (this.state.proteinTemp += proteinVal);
+    let sodiumTotal = (this.state.proteinTemp += sodiumVal);
+    let transfatTotal = (this.state.transfatTemp += transfatVal);
     console.log(
       this.state.caloriesTemp,
       "< - stateCaloriesTemp caloriesTotal var after Side -> ",
       this.state.selectedSide,
       caloriesTotal
+      
     );
-    return caloriesTotal;
+
+
   }
 
 
   // NUTRITION FUNCTIONS ABOVE
 
   componentDidMount() {
-    this.setVals();
     axios.get("/api/places").then(response => {
       this.setState({ places: response.data });
     });
@@ -332,14 +429,16 @@ class Calculator extends React.Component {
   //   this.setState({ meats: newMeats });
   // }
 
-  addToFavorites(place) {
-    axios.post("/api/favs", place).then(response => {
-      this.props.updateFavorites(response.data);
-    });
-  }
+  // addToFavorites(place) {
+  //   axios.post("/api/favs", place).then(response => {
+  //     this.props.updateFavorites(response.data);
+  //   });
+  // }
+
 
   render() {
     return (
+      <div className= "calculatorHolder">
       <div className="ingredients__container">
         <h1>
           <select
@@ -395,25 +494,55 @@ class Calculator extends React.Component {
             <Options options={this.state.sides} />
           </select>
         </h5>
+        </div>
+        <h6 className = "buttonHolder" >
         <button
           onClick={() => {
-            this.setVals();
+            
             this.addCaloriesBreads();
             this.addCaloriesMeats();
             this.addCaloriesVegs();
             this.addCaloriesSauces();
             this.addCaloriesDrinks();
             this.addCaloriesSides();
-            // this.setVals();
+            this.sendThatData(this.state.caloriesTemp, this.state.proteinTemp,
+               this.state.sodiumTemp, this.state.transfatTemp,
+               this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
+               this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg)
+            this.setVals();
           }}
         >
           Add Me Up!
         </button>
-        {/* <button onClick = {this.addEmUp()}>AddEmUp!</button> */}
-        {/* <h1>{caloriesTotal}</h1> */}
-      </div>
+        <button >Pass that caloriesTemp!</button></h6>
+        <div className = "tableHolder">
+          <br></br> 
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            
+       {/* <h6>
+         <Table 
+      caloriesCalc={this.state.caloriesTemp}
+      // protein={this.state.protein}
+      // sodium={this.state.sodium}
+      // transfats={this.state.transfats}
+  
+      /> 
+      </h6> 
+     */}
+        </div>
+        </div>
+          
+
+    
     );
+        
+ 
   }
 }
 
 export default Calculator;
+
+

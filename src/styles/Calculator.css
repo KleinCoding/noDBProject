@@ -16,6 +16,28 @@
   align-items: center;
 }
 .ingredients__container {
+  border: dashed yellow;
   display: flex;
   
+}
+
+.tableHolder {
+  border: dashed green;
+  display:flex;
+  flex-direction: column;
+  
+ 
+}
+
+.buttonHolder {
+  border: dashed red;
+  display: flex;
+  flex-direction: column;
+  justify-items: auto;
+
+}
+.calculatorHolder {
+  display:flex;
+  flex-direction: column;
+  border: dashed black;
 }

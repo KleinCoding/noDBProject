@@ -9,7 +9,7 @@ import "./styles/App.css";
 import AddPlace from "./components/AddPlace";
 import Table from './components/Table';
 
-//TOTAL POINTS - 62;
+
 
 ////TESTING DROP DOWNS
 
@@ -22,14 +22,31 @@ function Options({ options }) {
 }
 
 
+
+let caloriesVal = 0;
+
 /// DROP DOWN TESTING ABOVE
 
 class App extends React.Component {
+
+// callbackFunc(calculatedCal){
+//     let caloriesVal = calculatedCal;
+//     return(caloriesVal)
+//     console.log(caloriesVal)
+//   }
+  
   constructor() {
     super();
     this.state = {
       places: [],
-      favorites: [],
+      favorites: [  {
+        id: 3,
+        value: "Turkey",
+        calories: 40,
+        protein: 5,
+        sodium: 10,
+        transfats: 5,
+      }],
       currentView: "places",
       meats: [],
       vegs: [],
@@ -37,21 +54,65 @@ class App extends React.Component {
       breads: [],
       drinks: [],
       sides: [],
-      calories: 0,
-      protein: 0,
-      sodium: 0,
-      transfats: 0,
       selectedMeat: "",
       selectedBread: "",
       selectedVeg: "",
       selectedSide:"",
       selectedDrink:"",
       selectedSauce:"",
+      caloriesCalc:0,
+      proteinCalc: 0,
+      sodiumCalc: 0,
+      transfatCalc: 0,
     };
     this.updatePlaces = this.updatePlaces.bind(this);
     this.updateFavorites = this.updateFavorites.bind(this);
+    this.callbackFunc = this.callbackFunc.bind(this);
+    // this.summonArrays = this.summonArrays.bind(this);
   
+
+
+
   }
+
+
+
+  callbackFunc(calories, protein, sodium, transfats, eBread, eDrink, eMeat, eSauce, eSide, eVeg){
+    this.setState({
+      caloriesCalc: calories,
+      proteinCalc: protein,
+      sodiumCalc: sodium,
+      transfatsCalc: transfats,
+      selectedMeat: eMeat,
+      selectedBread: eBread,
+      selectedVeg: eVeg,
+      selectedSide: eSide,
+      selectedDrink:eDrink,
+      selectedSauce: eSauce,
+    
+    });
+    console.log(this.state.caloriesCalc)
+  }
+
+//   summonArrays(bread, meat, veg, sauce, drink, side){
+// this.setState({
+//   meats: meat,
+//   vegs: veg,
+//   sauces: sauce,
+//   breads: bread,
+//   drinks: drink,
+//   sides: side,
+// })
+//   }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -142,11 +203,16 @@ class App extends React.Component {
           </button>
         </header>
         <main>
+          
+      {/* <Ingredients summonArrays={this.summonArrays}
+                      /> */}
+
           {this.state.currentView === "places" ? (
             <div className="app__entry">
               <Calculator
                 updateFavorites={this.updateFavorites}
                 places={this.state.places}
+                callbackFunc={this.callbackFunc}
               />
               {/* <AddPlace updatePlaces={this.updatePlaces} /> */}
             </div>
@@ -154,6 +220,7 @@ class App extends React.Component {
             <Calculator
               showAddToFavButton={false}
               places={this.state.favorites}
+
             />
           )}
 
@@ -161,13 +228,20 @@ class App extends React.Component {
         </main>
     
         <Table 
-              calories={this.state.calories}
-              protein={this.state.protein}
-              sodium={this.state.sodium}
-              transfats={this.state.transfats}
+              caloriesCalc={this.state.caloriesCalc}
+              proteinCalc={this.state.proteinCalc}
+              sodiumCalc={this.state.sodiumCalc}
+              transfatsCalc={this.state.transfatsCalc}
+              favorites={this.state.favorites}
+              selectedMeat = {this.state.selectedMeat}
+              selectedBread ={this.state.selectedBread}
+              selectedVeg ={this.state.selectedVeg}
+              selectedSide= {this.state.selectedSide}
+              selectedDrink= {this.state.selectedDrink}
+              selectedSauce= {this.state.selectedSauce}
 
               
-        />
+        /> 
 
 
       </div>
