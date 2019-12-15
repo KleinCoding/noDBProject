@@ -64,6 +64,7 @@ class App extends React.Component {
       proteinCalc: 0,
       sodiumCalc: 0,
       transfatCalc: 0,
+      favsArrstate: [],
     };
     this.updatePlaces = this.updatePlaces.bind(this);
     this.updateFavorites = this.updateFavorites.bind(this);
@@ -77,8 +78,9 @@ class App extends React.Component {
 
 
 
-  callbackFunc(calories, protein, sodium, transfats, eBread, eDrink, eMeat, eSauce, eSide, eVeg, sBA, sMA, sVA, sSA, sDA, sSAA ){
+  callbackFunc(favs, calories, protein, sodium, transfats, eBread, eDrink, eMeat, eSauce, eSide, eVeg, sBA, sMA, sVA, sSA, sDA, sSAA ){
     this.setState({
+      favsArrstate: favs,
       caloriesCalc: calories,
       proteinCalc: protein,
       sodiumCalc: sodium,
@@ -229,6 +231,7 @@ class App extends React.Component {
           ) : (
             <div className="favoritesHolder">
             <FavoritesHolder
+            favsArrtemp={this.state.favsArrstate}
 
             />
           </div>

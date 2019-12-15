@@ -22,7 +22,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 function createData(name, code, population, size, density) {
-// console.log("this is create data!")
+  // console.log("this is create data!")
   return { name, code, population, size, density };
 }
 
@@ -55,19 +55,19 @@ export default function StickyHeadTable(props) {
 
 
 
-  function  createDataBread (element) {
-    let valCal =0;
+  function createDataBread(element) {
+    let valCal = 0;
     let valProt = 0;
-    let valSod= 0;
-    let valTran= 0;
-  
+    let valSod = 0;
+    let valTran = 0;
+
     if (element === "Wheat") {
       let valCal = (props.breads[1].calories);
       let valProt = (props.breads[1].protein);
       let valSod = (props.breads[1].sodium);
       let valTran = (props.breads[1].transfats);
       console.log("Create data bread step 1", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "White") {
       let valCal = (props.breads[2].calories);
@@ -75,7 +75,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.breads[2].sodium);
       let valTran = (props.breads[2].transfats);
       console.log("Create data bread step 1-white", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Italian Herb") {
       let valCal = (props.breads[3].calories);
@@ -83,7 +83,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.breads[3].sodium);
       let valTran = (props.breads[3].transfats);
       console.log("Create data bread step 1-herb", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Flatcarboard") {
       let valCal = (props.breads[4].calories);
@@ -91,26 +91,26 @@ export default function StickyHeadTable(props) {
       let valSod = (props.breads[4].sodium);
       let valTran = (props.breads[4].transfats);
       console.log("Create data bread step 1-flat", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     console.log("Create data bread step 2", element, valCal, valProt, valSod, valTran)
-    return { element, valCal, valProt, valSod, valTran};
+    return { element, valCal, valProt, valSod, valTran };
   }
-  
- 
-  function  createDataMeat (element) {
-    let valCal =0;
+
+
+  function createDataMeat(element) {
+    let valCal = 0;
     let valProt = 0;
-    let valSod= 0;
-    let valTran= 0;
-  
+    let valSod = 0;
+    let valTran = 0;
+
     if (element === "Ham") {
       let valCal = (props.meats[1].calories);
       let valProt = (props.meats[1].protein);
       let valSod = (props.meats[1].sodium);
       let valTran = (props.meats[1].transfats);
       console.log("Create data meat step 1 - 1", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Turkey") {
       let valCal = (props.meats[2].calories);
@@ -118,7 +118,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.meats[2].sodium);
       let valTran = (props.meats[2].transfats);
       console.log("Create data meat step 1- 2", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Iguana") {
       let valCal = (props.meats[3].calories);
@@ -126,7 +126,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.meats[3].sodium);
       let valTran = (props.meats[3].transfats);
       console.log("Create data bread step 1- 3", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Salami") {
       let valCal = (props.meats[4].calories);
@@ -134,25 +134,25 @@ export default function StickyHeadTable(props) {
       let valSod = (props.meats[4].sodium);
       let valTran = (props.meats[4].transfats);
       console.log("Create data bread step 1- 4", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     console.log("Create data meat step 2", element, valCal, valProt, valSod, valTran)
-    return { element, valCal, valProt, valSod, valTran};
+    return { element, valCal, valProt, valSod, valTran };
   }
-  
-  function  createDataVeg (element) {
-    let valCal =0;
+
+  function createDataVeg(element) {
+    let valCal = 0;
     let valProt = 0;
-    let valSod= 0;
-    let valTran= 0;
-  
+    let valSod = 0;
+    let valTran = 0;
+
     if (element === "Lettuce") {
       let valCal = (props.vegs[1].calories);
       let valProt = (props.vegs[1].protein);
       let valSod = (props.vegs[1].sodium);
       let valTran = (props.vegs[1].transfats);
       console.log("Create data veg step 1 - 1", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Spinach") {
       let valCal = (props.vegs[2].calories);
@@ -160,7 +160,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.vegs[2].sodium);
       let valTran = (props.vegs[2].transfats);
       console.log("Create data veg step 1- 2", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Bulbasaur") {
       let valCal = (props.vegs[3].calories);
@@ -168,7 +168,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.vegs[3].sodium);
       let valTran = (props.vegs[3].transfats);
       console.log("Create data veg step 1- 3", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Onion") {
       let valCal = (props.vegs[4].calories);
@@ -176,26 +176,26 @@ export default function StickyHeadTable(props) {
       let valSod = (props.vegs[4].sodium);
       let valTran = (props.vegs[4].transfats);
       console.log("Create data veg step 1- 4", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     console.log("Create data veg step 2", element, valCal, valProt, valSod, valTran)
-    return { element, valCal, valProt, valSod, valTran};
+    return { element, valCal, valProt, valSod, valTran };
   }
-  
- 
-  function  createDataSauce (element) {
-    let valCal =0;
+
+
+  function createDataSauce(element) {
+    let valCal = 0;
     let valProt = 0;
-    let valSod= 0;
-    let valTran= 0;
-  
+    let valSod = 0;
+    let valTran = 0;
+
     if (element === "Vainaigrette") {
       let valCal = (props.sauces[1].calories);
       let valProt = (props.sauces[1].protein);
       let valSod = (props.sauces[1].sodium);
       let valTran = (props.sauces[1].transfats);
       console.log("Create data veg sauce 1 - 1", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Mustard") {
       let valCal = (props.sauces[2].calories);
@@ -203,7 +203,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.sauces[2].sodium);
       let valTran = (props.sauces[2].transfats);
       console.log("Create data veg sauce 1- 2", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Cream of people") {
       let valCal = (props.sauces[3].calories);
@@ -211,7 +211,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.sauces[3].sodium);
       let valTran = (props.sauces[3].transfats);
       console.log("Create data veg sauce 1- 3", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Mayo") {
       let valCal = (props.sauces[4].calories);
@@ -219,32 +219,32 @@ export default function StickyHeadTable(props) {
       let valSod = (props.sauces[4].sodium);
       let valTran = (props.sauces[4].transfats);
       console.log("Create data veg sauce 1- 4", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     console.log("Create data sauce step 2", element, valCal, valProt, valSod, valTran)
-    return { element, valCal, valProt, valSod, valTran};
+    return { element, valCal, valProt, valSod, valTran };
   }
-  
- 
 
 
 
 
- 
- 
-  function  createDataDrink (element) {
-    let valCal =0;
+
+
+
+
+  function createDataDrink(element) {
+    let valCal = 0;
     let valProt = 0;
-    let valSod= 0;
-    let valTran= 0;
-  
+    let valSod = 0;
+    let valTran = 0;
+
     if (element === "Coke") {
       let valCal = (props.drinks[1].calories);
       let valProt = (props.drinks[1].protein);
       let valSod = (props.drinks[1].sodium);
       let valTran = (props.drinks[1].transfats);
       console.log("Create data drink 1 - 1", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Sprite") {
       let valCal = (props.drinks[2].calories);
@@ -252,7 +252,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.drinks[2].sodium);
       let valTran = (props.drinks[2].transfats);
       console.log("Create data drink 1- 2", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Sugarjuice") {
       let valCal = (props.drinks[3].calories);
@@ -260,7 +260,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.drinks[3].sodium);
       let valTran = (props.drinks[3].transfats);
       console.log("Create data drink 1- 3", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Salami Water") {
       let valCal = (props.drinks[4].calories);
@@ -268,26 +268,26 @@ export default function StickyHeadTable(props) {
       let valSod = (props.drinks[4].sodium);
       let valTran = (props.drinks[4].transfats);
       console.log("Create data drink 1- 4", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     console.log("Create data drink step 2", element, valCal, valProt, valSod, valTran)
-    return { element, valCal, valProt, valSod, valTran};
+    return { element, valCal, valProt, valSod, valTran };
   }
-  
- 
-  function  createDataSide (element) {
-    let valCal =0;
+
+
+  function createDataSide(element) {
+    let valCal = 0;
     let valProt = 0;
-    let valSod= 0;
-    let valTran= 0;
-  
+    let valSod = 0;
+    let valTran = 0;
+
     if (element === "Chocochip") {
       let valCal = (props.sides[1].calories);
       let valProt = (props.sides[1].protein);
       let valSod = (props.sides[1].sodium);
       let valTran = (props.sides[1].transfats);
       console.log("Create data side 1 - 1", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Macadamia nut") {
       let valCal = (props.sides[2].calories);
@@ -295,7 +295,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.sides[2].sodium);
       let valTran = (props.sides[2].transfats);
       console.log("Create data drink 1- 2", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Chips") {
       let valCal = (props.sides[3].calories);
@@ -303,7 +303,7 @@ export default function StickyHeadTable(props) {
       let valSod = (props.sides[3].sodium);
       let valTran = (props.sides[3].transfats);
       console.log("Create data side 1- 3", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     if (element === "Death") {
       let valCal = (props.sides[4].calories);
@@ -311,28 +311,28 @@ export default function StickyHeadTable(props) {
       let valSod = (props.sides[4].sodium);
       let valTran = (props.sides[4].transfats);
       console.log("Create data side 1- 4", element, valCal, valProt, valSod, valTran)
-      return { element, valCal, valProt, valSod, valTran};
+      return { element, valCal, valProt, valSod, valTran };
     }
     console.log("Create data side step 2", element, valCal, valProt, valSod, valTran)
-    return { element, valCal, valProt, valSod, valTran};
+    return { element, valCal, valProt, valSod, valTran };
   }
-  
 
 
-  function  createDataTotal (element) {
-    let valCal =props.caloriesCalc;
+
+  function createDataTotal(element) {
+    let valCal = props.caloriesCalc;
     let valProt = props.proteinCalc;
-    let valSod= props.sodiumCalc;
-    let valTran= props.transfatsCalc;
+    let valSod = props.sodiumCalc;
+    let valTran = props.transfatsCalc;
     console.log("combine data", element, valCal, valProt, valSod, valTran)
-    return { element, valCal, valProt, valSod, valTran};
+    return { element, valCal, valProt, valSod, valTran };
   }
 
 
 
 
 
-  
+
   const columns = [
     { id: 'element', label: 'Item', minWidth: 170 },
 
@@ -359,7 +359,7 @@ export default function StickyHeadTable(props) {
       format: value => value.toFixed(),
     },
   ];
-  
+
 
   const rows = [
     createDataBread(props.selectedBread),
