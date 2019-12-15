@@ -8,7 +8,7 @@ import "./styles/App.css";
 //components
 import AddPlace from "./components/AddPlace";
 import Table from './components/Table';
-
+import FavoritesHolder from './components/FavoritesHolder'
 
 
 ////TESTING DROP DOWNS
@@ -47,7 +47,7 @@ class App extends React.Component {
         sodium: 10,
         transfats: 5,
       }],
-      currentView: "places",
+      currentView: "calculator",
       meats: [],
       vegs: [],
       sauces: [],
@@ -77,7 +77,7 @@ class App extends React.Component {
 
 
 
-  callbackFunc(calories, protein, sodium, transfats, eBread, eDrink, eMeat, eSauce, eSide, eVeg){
+  callbackFunc(calories, protein, sodium, transfats, eBread, eDrink, eMeat, eSauce, eSide, eVeg, sBA, sMA, sVA, sSA, sDA, sSAA ){
     this.setState({
       caloriesCalc: calories,
       proteinCalc: protein,
@@ -89,9 +89,15 @@ class App extends React.Component {
       selectedSide: eSide,
       selectedDrink:eDrink,
       selectedSauce: eSauce,
+      selectedMeatArr: sMA,
+      selectedBreadArr: sBA,
+      selectedVegArr: sVA,
+      selectedSideArr: sSAA,
+      selectedDrinkArr: sDA,
+      selectedSauceArr: sSA,
     
     });
-    console.log(this.state.caloriesCalc)
+    console.log("app console log", this.state.selectedBreadArr)
   }
 
 //   summonArrays(bread, meat, veg, sauce, drink, side){
@@ -198,16 +204,15 @@ class App extends React.Component {
           <button onClick={() => this.setState({ currentView: "favs" })}>
             Favorites
           </button>
-          <button onClick={() => this.setState({ currentView: "places" })}>
+          <button onClick={() => this.setState({ currentView: "calculator" })}>
             Places
           </button>
         </header>
         <main>
           
-      {/* <Ingredients summonArrays={this.summonArrays}
-                      /> */}
 
-          {this.state.currentView === "places" ? (
+
+          {this.state.currentView === "calculator" ? (
             <div className="app__entry">
               <Calculator
                 updateFavorites={this.updateFavorites}
@@ -216,14 +221,18 @@ class App extends React.Component {
               />
               {/* <AddPlace updatePlaces={this.updatePlaces} /> */}
             </div>
+
+
+
+
+
           ) : (
-            <Calculator
-              showAddToFavButton={false}
-              places={this.state.favorites}
+            <div className="favoritesHolder">
+            <FavoritesHolder
 
             />
+          </div>
           )}
-
          
         </main>
     
@@ -239,6 +248,12 @@ class App extends React.Component {
               selectedSide= {this.state.selectedSide}
               selectedDrink= {this.state.selectedDrink}
               selectedSauce= {this.state.selectedSauce}
+              meats= {this.state.meats}
+              vegs= {this.state.vegs}
+              breads= {this.state.breads}
+              sauces= {this.state.sauces}
+              sides= {this.state.sides}
+              drinks= {this.state.sides}
 
               
         /> 

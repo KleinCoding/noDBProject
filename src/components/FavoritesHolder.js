@@ -26,13 +26,11 @@ let sauceSelArr= [];
 let drinkSelArr= [];
 let sideSelArr= [];
 var breadSelectArr= [];
-let favsArr = [];
-let favsArr2 = [];
 
 
 
 
-class Calculator extends React.Component {
+class FavoritesHolder extends React.Component {
 
 
   sendThatData(calories, protein, sodium, transfats, eBread, eDrink, eMeat, eSauce, eSide, eVeg, sBA, sMA, sVA, sSA, sDA, sSAA){
@@ -69,6 +67,7 @@ constructor() {
       transfatTemp: 0,
       breadSelArr: [],
       reset: null,
+      selectedFavorite: "",
     };
     // this.addToFavorites = this.addToFavorites.bind(this);
     this.addCaloriesMeats = this.addCaloriesMeats.bind(this);
@@ -84,8 +83,6 @@ constructor() {
     // this.renderCalories = this.renderCalories.bind(this)
     // this.setVal2 = this.setVal2.bind(this)
     this.resetVals = this.resetVals.bind(this)
-    this.addToFavs = this.addToFavs.bind(this)
-    this.addToFavs2 = this.addToFavs2.bind(this)
 
     
   }
@@ -106,30 +103,13 @@ constructor() {
 
 //ARRAY SENDING ABOVE
 
-//FAVORITE FUNCTIONS BELOW
-
-
-
-
-//FAVORITE FUNCTIONS ABOVE
-
-
-
-
-addToFavs(){
-  let favsArr = [this.state.selectedBread, this.state.selectedMeat,
-     this.state.selectedVeg, this.state.selectedSauce, this.state.selectedDrink, this.state.selectedSide]
-     console.log(favsArr)
-}
 
 
 
 
 
 
-addToFavs2(){
-  let favsArr2 = favsArr2.push(favsArr)
-}
+
 
 
 
@@ -210,11 +190,12 @@ addToFavs2(){
   addCaloriesBreads() {
     
     if (this.state.selectedBread === "Wheat") {
-      // let breadSelArr = [];
+   
       let caloriesVal = (this.state.caloriesTemp += this.state.breads[1].calories);
       let proteinVal = (this.state.proteinTemp += this.state.breads[1].protein);
       let sodiumVal = (this.state.sodiumTemp += this.state.breads[1].sodium);
       let transfatVal = (this.state.transfatTemp += this.state.breads[1].transfats);
+
       this.setState({breadSelArr: (breadSelArr.unshift(this.state.breads[1]))})
     }
     if (this.state.selectedBread === "White") {
@@ -573,58 +554,14 @@ return sideSelArr;
       <div className="ingredients__container">
         <h1>
           <select
-            name="breads"
+            name="favoritesSelect"
             className="form-control"
-            onChange={e => this.setState({ selectedBread: e.target.value })}
+            onChange={e => this.setState({ selectedFavorite: e.target.value })}
           >
             <Options options={this.state.breads} />
           </select>
         </h1>
-        <h1>
-          <select
-            name="meats"
-            className="form-control"
-            onChange={e => this.setState({ selectedMeat: e.target.value })}
-          >
-            <Options options={this.state.meats} />
-          </select>
-        </h1>
-        <h2>
-          <select
-            name="vegs"
-            className="form-control"
-            onChange={e => this.setState({ selectedVeg: e.target.value })}
-          >
-            <Options options={this.state.vegs} />
-          </select>
-        </h2>
-        <h3>
-          <select
-            name="sauces"
-            className="form-control"
-            onChange={e => this.setState({ selectedSauce: e.target.value })}
-          >
-            <Options options={this.state.sauces} />
-          </select>
-        </h3>
-        <h4>
-          <select
-            name="drinks"
-            className="form-control"
-            onChange={e => this.setState({ selectedDrink: e.target.value })}
-          >
-            <Options options={this.state.drinks} />
-          </select>
-        </h4>
-        <h5>
-          <select
-            name="sides"
-            className="form-control"
-            onChange={e => this.setState({ selectedSide: e.target.value })}
-          >
-            <Options options={this.state.sides} />
-          </select>
-        </h5>
+       
         </div>
         <h6 className = "buttonHolder" >
         <button
@@ -645,9 +582,9 @@ return sideSelArr;
             this.resetVals();
           }}
         >
-          Add Me Up!
+          Show me new car!
         </button>
-        <button onClick={() => {this.addToFavs();}}>Save your Favorite!</button></h6>
+        <button onClick={() => {}}>Delete Favorite</button></h6>
         <div className = "tableHolder">
           <br></br> 
             <br></br>
@@ -676,6 +613,6 @@ return sideSelArr;
   }
 }
 
-export default Calculator;
+export default FavoritesHolder;
 
 
