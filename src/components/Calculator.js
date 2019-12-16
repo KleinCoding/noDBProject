@@ -28,7 +28,7 @@ let sideSelArr = [];
 var breadSelectArr = [];
 let favsArr = [];
 let favsArr2 = [];
-
+let id = 0;
 
 
 
@@ -179,6 +179,12 @@ class Calculator extends React.Component {
         this.setState({ proteinTemp: 0 });
         this.setState({ sodiumTemp: 0 });
         this.setState({ transfatsTemp: 0 });
+        // this.setState({ selectedBread: ""})
+        // this.setState({ selectedMeat: ""})
+        // this.setState({ selectedVeg: ""})
+        // this.setState({ selectedSauce: ""})
+        // this.setState({ selectedDrink: ""})
+        // this.setState({ selectedSide: ""})
         let breadSelArr = [];
         let meatSelArr = [];
         let vegSelArr = [];
@@ -669,9 +675,26 @@ class Calculator extends React.Component {
             Add Me Up!
         </button>
           <button onClick={() => {
-            this.sendThatData(this.state.favsArrstate)
-            // this.addToFavs();
-            this.addToFavs2()
+            // this.sendThatData(this.state.favsArrstate)
+            // this.addToFavs2()
+            id++
+            console.log("Pushing to favoritesAPI",  id,  this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
+            this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg )
+            axios.post('/api/favs', {
+              id: id,
+              bread: this.state.selectedBread,
+              meat: this.state.selectedMeat,
+              veg: this.state.selectedVeg,
+              sauce: this.state.selectedSauce,
+              drink: this.state.selectedDrink,
+              side: this.state.selectedSide,
+            }
+            )
+            .catch(err => {
+              console.log(err);
+            });
+            // this.setVals();
+            
           }
           }>Save your Favorite!</button></h6>
         <div className="tableHolder">
@@ -681,16 +704,7 @@ class Calculator extends React.Component {
           <br></br>
           <br></br>
 
-          {/* <h6>
-         <Table 
-      caloriesCalc={this.state.caloriesTemp}
-      // protein={this.state.protein}
-      // sodium={this.state.sodium}
-      // transfats={this.state.transfats}
-  
-      /> 
-      </h6> 
-     */}
+
         </div>
       </div>
 

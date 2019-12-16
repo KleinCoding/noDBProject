@@ -15,7 +15,10 @@ const {
   getSauce,
   getDrink,
   getSide,
+  getFavs,
+  addFavs,
 } = require("./ingredients.js");
+
 
 app.use(express.json());
 
@@ -29,5 +32,20 @@ app.get("/api/ingredients/sauce", getSauce);
 app.get("/api/ingredients/bread", getBread);
 app.get("/api/ingredients/side", getSide);
 app.get("/api/ingredients/drink", getDrink);
+
+
+app.get("/api/favorites", getFavs);
+
+app.post("/api/favorites", addFavs)
+// app.delete("/api/favorites/:id", deleteFavs)
+// app.put("/api/favorites/", editFavs)
+
+
+
+
+
+
+
+
 
 app.listen(5050, () => console.log(`Listening on Port 5050`));

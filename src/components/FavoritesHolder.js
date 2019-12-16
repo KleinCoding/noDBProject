@@ -8,7 +8,7 @@ import Table from "../components/Table"
 function Options({ options }) {
   return options.map(option => (
     <option key={option.id} value={option.value} object={option}>
-      {option.value}
+      {option.id}
     </option>
   ));
 }
@@ -26,6 +26,7 @@ let sauceSelArr= [];
 let drinkSelArr= [];
 let sideSelArr= [];
 var breadSelectArr= [];
+let favsArrFull= [];
 
 
 
@@ -68,6 +69,7 @@ constructor() {
       breadSelArr: [],
       reset: null,
       selectedFavorite: "",
+      favsArrFullState: [],
     };
     // this.addToFavorites = this.addToFavorites.bind(this);
     this.addCaloriesMeats = this.addCaloriesMeats.bind(this);
@@ -121,6 +123,8 @@ constructor() {
 
 
   ///NUTRITION FUNCTIONS BELOW
+
+
 
   addEmUp() {
     this.setVals();
@@ -471,6 +475,10 @@ return sideSelArr;
   // NUTRITION FUNCTIONS ABOVE
 
   componentDidMount() {
+
+
+
+
     axios.get("/api/places").then(response => {
       this.setState({ places: response.data });
     });
@@ -534,7 +542,46 @@ return sideSelArr;
       .catch(err => {
         console.log(err);
       });
+      
+
+      axios.get("/api/favorites/").then(response => {
+        this.setState({ favsArrFullState: response.data });
+      });
+
+
+
   }
+
+  setSelectState() {
+    for( let i = 0; i < this.state.favorites.length; i++){
+      if (this.state.favorites[i].id == this.state.selectedFavorite)
+      this.setState({ 
+        selectedBread: this.state.favorites[i].bread,
+        selectedMeat: this.state.favorites[i].meat,
+        selectedVeg: this.state.favorites[i].veg,
+        selectedSauce: this.state.favorites[i].sauce,
+        selectedDrink: this.state.favorites[i].drink,
+        selectedSide: this.state.favorites[i].side
+      }
+      )
+      console.log("set select state", this.state.favorites, this.state.selectedFavorite)
+    }
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
   // updateAnimals(newMeats) {
   //   this.setState({ meats: newMeats });
   // }
@@ -556,35 +603,64 @@ return sideSelArr;
           <select
             name="favoritesSelect"
             className="form-control"
-            onChange={e => this.setState({ selectedFavorite: e.target.value })}
+            onChange={e => this.setState({ selectedFavorite: e.target.value })    
+          
+          }
           >
-            <Options options={this.state.breads} />
+            <Options options={this.state.favorites}
+                      onChange={() => this.setSelectState()} />
           </select>
         </h1>
        
+
+
+
+
+
         </div>
         <h6 className = "buttonHolder" >
         <button
           onClick={() => {
             
+            // this.addCaloriesBreads();
+            // this.addCaloriesMeats();
+            // this.addCaloriesVegs();
+            // this.addCaloriesSauces();
+            // this.addCaloriesDrinks();
+            // this.addCaloriesSides();
+            // this.sendThatData(this.state.caloriesTemp, this.state.proteinTemp,
+            //    this.state.sodiumTemp, this.state.transfatTemp,
+            //    this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
+            //    this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg, this.state.breadSelArr, meatSelArr, vegSelArr, sauceSelArr, drinkSelArr, sideSelArr)
+            // this.setVals();
+            // // this.setVal2();
+            // this.resetVals();
+            this.setSelectState()
+            this.sendThatData(this.state.favsArrstate, this.state.caloriesTemp, this.state.proteinTemp,
+              this.state.sodiumTemp, this.state.transfatTemp,
+              this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
+              this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg, 
+              this.state.breadSelArr, meatSelArr, vegSelArr, sauceSelArr, drinkSelArr, 
+              sideSelArr)
+          }}
+        >
+          Double-Click to Calculate!
+        </button>
+        <button onClick={() => {
+
             this.addCaloriesBreads();
             this.addCaloriesMeats();
             this.addCaloriesVegs();
             this.addCaloriesSauces();
             this.addCaloriesDrinks();
             this.addCaloriesSides();
-            this.sendThatData(this.state.caloriesTemp, this.state.proteinTemp,
-               this.state.sodiumTemp, this.state.transfatTemp,
-               this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
-               this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg, this.state.breadSelArr, meatSelArr, vegSelArr, sauceSelArr, drinkSelArr, sideSelArr)
+            // this.sendThatData(this.state.caloriesTemp, this.state.proteinTemp,
+            //    this.state.sodiumTemp, this.state.transfatTemp,
+            //    this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
+            //    this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg, this.state.breadSelArr, meatSelArr, vegSelArr, sauceSelArr, drinkSelArr, sideSelArr)
             this.setVals();
-            // this.setVal2();
-            this.resetVals();
-          }}
-        >
-          Show me new car!
-        </button>
-        <button onClick={() => {}}>Delete Favorite</button></h6>
+
+        }}>Shoe me the goods!</button></h6>
         <div className = "tableHolder">
           <br></br> 
             <br></br>

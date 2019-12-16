@@ -207,7 +207,7 @@ class App extends React.Component {
             Favorites
           </button>
           <button onClick={() => this.setState({ currentView: "calculator" })}>
-            Places
+            Calculator
           </button>
         </header>
         <main>
@@ -221,6 +221,29 @@ class App extends React.Component {
                 places={this.state.places}
                 callbackFunc={this.callbackFunc}
               />
+
+                    {/* <Table 
+              caloriesCalc={this.state.caloriesCalc}
+              proteinCalc={this.state.proteinCalc}
+              sodiumCalc={this.state.sodiumCalc}
+              transfatsCalc={this.state.transfatsCalc}
+              favorites={this.state.favorites}
+              selectedMeat = {this.state.selectedMeat}
+              selectedBread ={this.state.selectedBread}
+              selectedVeg ={this.state.selectedVeg}
+              selectedSide= {this.state.selectedSide}
+              selectedDrink= {this.state.selectedDrink}
+              selectedSauce= {this.state.selectedSauce}
+              meats= {this.state.meats}
+              vegs= {this.state.vegs}
+              breads= {this.state.breads}
+              sauces= {this.state.sauces}
+              sides= {this.state.sides}
+              drinks= {this.state.sides}
+
+              
+        />  */}
+
               {/* <AddPlace updatePlaces={this.updatePlaces} /> */}
             </div>
 
@@ -229,9 +252,13 @@ class App extends React.Component {
 
 
           ) : (
-            <div className="favoritesHolder">
+            <div className="favoritesHolder"> 
+<button onClick={() => this.setState({ currentView: "calculator" })}>
+            Calculator
+          </button>
             <FavoritesHolder
             favsArrtemp={this.state.favsArrstate}
+            callbackFunc={this.callbackFunc}
 
             />
           </div>

@@ -231,7 +231,14 @@ const drinks = [
     sodium: 10,
     transfats: 10,
   }
+
+
 ];
+
+
+var favs = [];
+
+let id= 1
 
 function getMeat(req, res) {
   res.status(200).json(meats);
@@ -257,6 +264,26 @@ function getDrink(req, res) {
   res.status(200).json(drinks);
 }
 
+function getFavs(req, res) {
+  res.status(200).json(favs);
+}
+
+function addFavs(req, res) {
+  let fav = {
+    id: id,
+    bread: bread,
+    meat: meat,
+    veg: veg,
+    sauce: sauce,
+    drink: drink,
+    side: side,
+  }
+  favs.push(fav)
+  id++
+  console.log("pushing fav to fav array", fav)
+  req.status(200).json(favs)
+}
+
 let caloriesVal = 0;
 let proteinVal = 0;
 let sodiumVal = 0;
@@ -272,5 +299,7 @@ module.exports = {
   caloriesVal,
   proteinVal,
   sodiumVal,
-  transfatsVal
+  transfatsVal,
+  getFavs,
+  addFavs
 };
