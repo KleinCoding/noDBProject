@@ -10,7 +10,7 @@ import AddPlace from "./components/AddPlace";
 import Table from './components/Table';
 import FavoritesHolder from './components/FavoritesHolder'
 import poketitle from './Pokewich.png'
-
+import Header from './components/Header'
 
 ////TESTING DROP DOWNS
 
@@ -204,7 +204,7 @@ class App extends React.Component {
     return (
       <div>
         <header>
-          <nav class = "navbar">
+          {/* <nav class = "navbar">
     <img 
     className ="pokewich"
     src = {poketitle}></img>
@@ -218,18 +218,13 @@ class App extends React.Component {
 
 
     </ul>
-  </nav>
+  </nav> */}
         
-          
-          {/* <button onClick={() => this.setState({ currentView: "favs" })}>
-            Favorites
-          </button>
-          <button onClick={() => this.setState({ currentView: "calculator" })}>
-            Calculator
-          </button> */}
+<Header />
         </header>
         <main>
-          
+        <button class="nav-item" onClick={() => this.setState({currentView: "calculator"})}><a href="#">Calculator</a></button>
+<button class="nav-item"onClick ={() => this.setState({currentView: "favs"})}><a href="#">Favorites</a></button>
 
 
           {this.state.currentView === "calculator" ? (
@@ -306,7 +301,7 @@ class App extends React.Component {
               
         /> 
 </div>
-
+<Header />
       </div>
     );
   }

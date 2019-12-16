@@ -709,7 +709,7 @@ class Calculator extends React.Component {
 
             }}
           >
-            Clear the field!
+            I don't do anything! :D :D
         </button>
         <div className="tableHolder">
           <br></br>

@@ -17,10 +17,11 @@
   max-width: 99vw;
 }
 .ingredients__container {
-  margin-left: 27vw;
-  /* border: dashed purple; */
+  /* margin-top: 3vh; */
+  margin-left: 20vw;
+  /* border: solid yellow; */
   display: flex;
-  max-width: 45vw;
+  max-width: 58.5vw;
   
 }
 
@@ -28,7 +29,7 @@
   /* border: dashed green; */
   display:flex;
   flex-direction: column;
-  margin-top: 14vh;
+  margin-top: 9.4vh;
   
  
 }
@@ -36,7 +37,7 @@
 .buttonHolder {
   justify-self: center;
   margin-left: 25vw;
-  border: dashed blue;
+  border: solid blue;
   display: flex;
   flex-direction: column;
   justify-items: auto;

@@ -120,7 +120,6 @@ constructor() {
       favInput:"",
       stateCount: 0,
     };
-    // this.addToFavorites = this.addToFavorites.bind(this);
     this.addCaloriesMeats = this.addCaloriesMeats.bind(this);
     this.addCaloriesBreads = this.addCaloriesBreads.bind(this);
     this.addCaloriesVegs = this.addCaloriesVegs.bind(this);
@@ -131,48 +130,12 @@ constructor() {
     this.resetState = this.resetState.bind(this);
     this.setVals = this.setVals.bind(this);
     this.sendThatData = this.sendThatData.bind(this)
-    // this.renderCalories = this.renderCalories.bind(this)
-    // this.setVal2 = this.setVal2.bind(this)
     this.resetVals = this.resetVals.bind(this)
     this.editFav = this.editFav.bind(this)
 
     
   }
 
-
-
-//SENDING NUTRITION INFO AS AN ARRAY
-
-
-
-
-
-
-
-
-
-
-
-//ARRAY SENDING ABOVE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ///NUTRITION FUNCTIONS BELOW
 
 
 editFav(){
@@ -300,13 +263,6 @@ editFav(){
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
     this.setState({breadSelArr: breadSelArr});
-    // console.log(
-    //   this.state.caloriesTemp,
-    //   "< - stateCaloriesTemp caloriesTotal var after breads -> ",
-    //   this.state.selectedBread,
-    //   caloriesTotal,
-    //   "bread selArr", breadSelArr, "Bread Select Arr", breadSelectArr
-    // );
     return caloriesTotal;
   }
 
@@ -343,16 +299,6 @@ editFav(){
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    // console.log(
-    //   // this.state.caloriesTemp,
-    //   // "< - stateCaloriesTemp calories Total var after Meat -> ",
-    //   // this.state.selectedMeat,
-    //   // caloriesTotal
-    //   this.state.proteinTemp,
-    //   "< - stateproteinTemp protein Total var after Meat -> ",
-    //   this.state.selectedMeat,
-    //   proteinTotal
-    // );
     return caloriesTotal;
     return meatSelArr
   }
@@ -393,12 +339,6 @@ editFav(){
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    // console.log(
-    //   this.state.caloriesTemp,
-    //   "< - stateCaloriesTemp caloriesTotal var after Veg -> ",
-    //   this.state.selectedVeg,
-    //   caloriesTotal
-    // );
     return caloriesTotal;
     return vegSelArr
   }
@@ -437,12 +377,6 @@ editFav(){
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    // console.log(
-    //   this.state.caloriesTemp,
-    //   "< - stateCaloriesTemp caloriesTotal var after Sauce -> ",
-    //   this.state.selectedSauce,
-    //   caloriesTotal
-    // );
     return caloriesTotal;
     return sauceSelArr;
   }
@@ -484,12 +418,6 @@ editFav(){
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    // console.log(
-    //   this.state.caloriesTemp,
-    //   "< - stateCaloriesTemp caloriesTotal var after Drink -> ",
-    //   this.state.selectedDrink,
-    //   caloriesTotal
-    // );
     return caloriesTotal;
     return drinkSelArr;
   }
@@ -531,13 +459,6 @@ editFav(){
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    // console.log(
-    //   this.state.caloriesTemp,
-    //   "< - stateCaloriesTemp caloriesTotal var after Side -> ",
-    //   this.state.selectedSide,
-    //   caloriesTotal
-      
-    // );
 return caloriesTotal;
 return sideSelArr;
 
@@ -779,13 +700,14 @@ return sideSelArr;
 
         }}>Edit your favorite!</button></h6>
 
-        <button onClick={() => {
+        <button className = "deletebutton"
+        onClick={() => {
         
             axios.delete(`/api/favs/${this.state.selectedFavorite}`)
             .catch(err => {
               console.log(err);
             });
-            // this.setVals();
+        
             
           
 
@@ -795,18 +717,6 @@ return sideSelArr;
             <br></br>
             <br></br>
 
-
-            
-       {/* <h6>
-         <Table 
-      caloriesCalc={this.state.caloriesTemp}
-      // protein={this.state.protein}
-      // sodium={this.state.sodium}
-      // transfats={this.state.transfats}
-  
-      /> 
-      </h6> 
-     */}
         </div>
         </div>
           

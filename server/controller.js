@@ -33,7 +33,7 @@ function editFavs(req, res) {
   favorites[i].side = side;
   res.status(200).json(favorites);
   console.log("favs API edit complete, favs =", favorites);
-  this.setState({stateCount: this.state.statecount++})
+  // this.setState({stateCount: this.state.statecount++})
 }
 
 function deleteFavs(req, res) {
@@ -45,16 +45,9 @@ function deleteFavs(req, res) {
 
   favorites.splice(favindex, 1)
 
-  // console.log(favorites)
 
 res.status(200).json(favorites);
-  // for(let i=0; i < favorites.length; i++){
-  //   console.log(favorites[i].id, "log favorites[i].id")
-  //   if (favorites[i].id == input ){
-  //     favorites.splice(i, 1)
-  //   }
-  // }
-  
+
 }
 
 module.exports = {
