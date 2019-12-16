@@ -284,6 +284,8 @@ function addFavs(req, res) {
   req.status(200).json(favs)
 }
 
+
+
 let caloriesVal = 0;
 let proteinVal = 0;
 let sodiumVal = 0;
@@ -300,6 +302,4 @@ module.exports = {
   proteinVal,
   sodiumVal,
   transfatsVal,
-  getFavs,
-  addFavs
 };

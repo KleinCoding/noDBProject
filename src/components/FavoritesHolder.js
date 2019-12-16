@@ -12,7 +12,48 @@ function Options({ options }) {
     </option>
   ));
 }
-
+function OptionsBread({ options }) {
+  return options.map(option => (
+    <option key={option.id} value={option.value} object={option}>
+      {option.value}
+    </option>
+  ));
+}
+function OptionsMeat({ options }) {
+  return options.map(option => (
+    <option key={option.id} value={option.value} object={option}>
+      {option.value}
+    </option>
+  ));
+}
+function OptionsVeg({ options }) {
+  return options.map(option => (
+    <option key={option.id} value={option.value} object={option}>
+      {option.value}
+    </option>
+  ));
+}
+function OptionsSauce({ options }) {
+  return options.map(option => (
+    <option key={option.id} value={option.value} object={option}>
+      {option.value}
+    </option>
+  ));
+}
+function OptionsDrink({ options }) {
+  return options.map(option => (
+    <option key={option.id} value={option.value} object={option}>
+      {option.value}
+    </option>
+  ));
+}
+function OptionsSide({ options }) {
+  return options.map(option => (
+    <option key={option.id} value={option.value} object={option}>
+      {option.value}
+    </option>
+  ));
+}
 
 
 let caloriesVal = 0;
@@ -68,8 +109,16 @@ constructor() {
       transfatTemp: 0,
       breadSelArr: [],
       reset: null,
-      selectedFavorite: "",
+      selectedFavorite: 0,
       favsArrFullState: [],
+      updateBread:"",
+      updateMeat:"",
+      updateVeg:"",
+      updateSauce:"",
+      updateDrink:"",
+      updateSide:"",
+      favInput:"",
+      stateCount: 0,
     };
     // this.addToFavorites = this.addToFavorites.bind(this);
     this.addCaloriesMeats = this.addCaloriesMeats.bind(this);
@@ -85,6 +134,7 @@ constructor() {
     // this.renderCalories = this.renderCalories.bind(this)
     // this.setVal2 = this.setVal2.bind(this)
     this.resetVals = this.resetVals.bind(this)
+    this.editFav = this.editFav.bind(this)
 
     
   }
@@ -125,6 +175,28 @@ constructor() {
   ///NUTRITION FUNCTIONS BELOW
 
 
+editFav(){
+  axios.put('api/favs/:input', {
+    body: JSON.stringify({
+      input: this.state.selectedFavorite,
+      bread: this.state.updateBread,
+      meat: this.state.updateMeat,
+      veg: this.state.updateVeg,
+      sauce: this.state.updateSauce,
+      drink: this.state.updateDrink,
+      side: this.state.updateSide,
+
+    }),
+
+  }).then(response => {
+          return response.json()
+  }).then(json => {
+    console.log("edit Fav has fun", json)
+  })
+
+}
+
+
 
   addEmUp() {
     this.setVals();
@@ -150,7 +222,7 @@ constructor() {
       this.setState({ caloriesTemp: 0 });
       this.setState({ proteinTemp: 0 });
       this.setState({ sodiumTemp: 0 });
-      this.setState({ transfatsTemp: 0 });
+      this.setState({ transfatTemp: 0 });
       let breadSelArr= [];
       let meatSelArr= [];
       let vegSelArr= [];
@@ -228,13 +300,13 @@ constructor() {
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
     this.setState({breadSelArr: breadSelArr});
-    console.log(
-      this.state.caloriesTemp,
-      "< - stateCaloriesTemp caloriesTotal var after breads -> ",
-      this.state.selectedBread,
-      caloriesTotal,
-      "bread selArr", breadSelArr, "Bread Select Arr", breadSelectArr
-    );
+    // console.log(
+    //   this.state.caloriesTemp,
+    //   "< - stateCaloriesTemp caloriesTotal var after breads -> ",
+    //   this.state.selectedBread,
+    //   caloriesTotal,
+    //   "bread selArr", breadSelArr, "Bread Select Arr", breadSelectArr
+    // );
     return caloriesTotal;
   }
 
@@ -271,16 +343,16 @@ constructor() {
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    console.log(
-      // this.state.caloriesTemp,
-      // "< - stateCaloriesTemp calories Total var after Meat -> ",
-      // this.state.selectedMeat,
-      // caloriesTotal
-      this.state.proteinTemp,
-      "< - stateproteinTemp protein Total var after Meat -> ",
-      this.state.selectedMeat,
-      proteinTotal
-    );
+    // console.log(
+    //   // this.state.caloriesTemp,
+    //   // "< - stateCaloriesTemp calories Total var after Meat -> ",
+    //   // this.state.selectedMeat,
+    //   // caloriesTotal
+    //   this.state.proteinTemp,
+    //   "< - stateproteinTemp protein Total var after Meat -> ",
+    //   this.state.selectedMeat,
+    //   proteinTotal
+    // );
     return caloriesTotal;
     return meatSelArr
   }
@@ -321,12 +393,12 @@ constructor() {
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    console.log(
-      this.state.caloriesTemp,
-      "< - stateCaloriesTemp caloriesTotal var after Veg -> ",
-      this.state.selectedVeg,
-      caloriesTotal
-    );
+    // console.log(
+    //   this.state.caloriesTemp,
+    //   "< - stateCaloriesTemp caloriesTotal var after Veg -> ",
+    //   this.state.selectedVeg,
+    //   caloriesTotal
+    // );
     return caloriesTotal;
     return vegSelArr
   }
@@ -365,12 +437,12 @@ constructor() {
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    console.log(
-      this.state.caloriesTemp,
-      "< - stateCaloriesTemp caloriesTotal var after Sauce -> ",
-      this.state.selectedSauce,
-      caloriesTotal
-    );
+    // console.log(
+    //   this.state.caloriesTemp,
+    //   "< - stateCaloriesTemp caloriesTotal var after Sauce -> ",
+    //   this.state.selectedSauce,
+    //   caloriesTotal
+    // );
     return caloriesTotal;
     return sauceSelArr;
   }
@@ -412,12 +484,12 @@ constructor() {
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    console.log(
-      this.state.caloriesTemp,
-      "< - stateCaloriesTemp caloriesTotal var after Drink -> ",
-      this.state.selectedDrink,
-      caloriesTotal
-    );
+    // console.log(
+    //   this.state.caloriesTemp,
+    //   "< - stateCaloriesTemp caloriesTotal var after Drink -> ",
+    //   this.state.selectedDrink,
+    //   caloriesTotal
+    // );
     return caloriesTotal;
     return drinkSelArr;
   }
@@ -459,13 +531,13 @@ constructor() {
     let proteinTotal = (this.state.proteinTemp += proteinVal);
     let sodiumTotal = (this.state.proteinTemp += sodiumVal);
     let transfatTotal = (this.state.transfatTemp += transfatVal);
-    console.log(
-      this.state.caloriesTemp,
-      "< - stateCaloriesTemp caloriesTotal var after Side -> ",
-      this.state.selectedSide,
-      caloriesTotal
+    // console.log(
+    //   this.state.caloriesTemp,
+    //   "< - stateCaloriesTemp caloriesTotal var after Side -> ",
+    //   this.state.selectedSide,
+    //   caloriesTotal
       
-    );
+    // );
 return caloriesTotal;
 return sideSelArr;
 
@@ -475,6 +547,7 @@ return sideSelArr;
   // NUTRITION FUNCTIONS ABOVE
 
   componentDidMount() {
+
 
 
 
@@ -544,11 +617,6 @@ return sideSelArr;
       });
       
 
-      axios.get("/api/favorites/").then(response => {
-        this.setState({ favsArrFullState: response.data });
-      });
-
-
 
   }
 
@@ -574,27 +642,8 @@ return sideSelArr;
 
 
 
-
-
-
-
-
-
-
-
-  // updateAnimals(newMeats) {
-  //   this.setState({ meats: newMeats });
-  // }
-
-  // addToFavorites(place) {
-  //   axios.post("/api/favs", place).then(response => {
-  //     this.props.updateFavorites(response.data);
-  //   });
-  // }
-
-
   render() {
-    let breadSelArr= [];
+
     return (
 
       <div className= "calculatorHolder">
@@ -611,10 +660,78 @@ return sideSelArr;
                       onChange={() => this.setSelectState()} />
           </select>
         </h1>
-       
-
-
-
+        <h1>
+          <select
+            name="breadchange"
+            className="form-control"
+            onChange={e => this.setState({ updateBread: e.target.value })    } 
+          
+         
+          >
+            <OptionsBread options={this.state.breads}
+                      onChange={() => this.setSelectState()} />
+          </select>
+        </h1>
+        <h1>
+          <select
+            name="updateMeat"
+            className="form-control"
+            onChange={e => this.setState({ updateMeat: e.target.value })  }   
+          
+        //  
+          >
+            <OptionsMeat options={this.state.meats}
+                      onChange={() => this.setSelectState()} />
+          </select>
+        </h1>
+        <h1>
+          <select
+            name="updateVeg"
+            className="form-control"
+            onChange={e => this.setState({ updateVeg: e.target.value })}    
+          
+          
+          >
+            <OptionsVeg options={this.state.vegs}
+                      onChange={() => this.setSelectState()} />
+          </select>
+        </h1>
+        <h1>
+          <select
+            name="updateSauce"
+            className="form-control"
+            onChange={e => this.setState({ updateSauce: e.target.value }) }   
+          
+          
+          >
+            <OptionsSauce options={this.state.sauces}
+                      onChange={() => this.setSelectState()} />
+          </select>
+        </h1>
+        <h1>
+          <select
+            name="updateDrink"
+            className="form-control"
+            onChange={e => this.setState({ updateDrink: e.target.value })}    
+          
+          
+          >
+            <OptionsDrink options={this.state.drinks}
+                      onChange={() => this.setSelectState()} />
+          </select>
+        </h1>
+        <h1>
+          <select
+            name="updateSide"
+            className="form-control"
+            onChange={e => this.setState({ updateSide: e.target.value }) }   
+          
+          
+          >
+            <OptionsSide options={this.state.sides}
+                      onChange={() => this.setSelectState()} />
+          </select>
+        </h1>
 
 
         </div>
@@ -622,51 +739,63 @@ return sideSelArr;
         <button
           onClick={() => {
             
-            // this.addCaloriesBreads();
-            // this.addCaloriesMeats();
-            // this.addCaloriesVegs();
-            // this.addCaloriesSauces();
-            // this.addCaloriesDrinks();
-            // this.addCaloriesSides();
-            // this.sendThatData(this.state.caloriesTemp, this.state.proteinTemp,
-            //    this.state.sodiumTemp, this.state.transfatTemp,
-            //    this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
-            //    this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg, this.state.breadSelArr, meatSelArr, vegSelArr, sauceSelArr, drinkSelArr, sideSelArr)
-            // this.setVals();
-            // // this.setVal2();
-            // this.resetVals();
-            this.setSelectState()
-            this.sendThatData(this.state.favsArrstate, this.state.caloriesTemp, this.state.proteinTemp,
-              this.state.sodiumTemp, this.state.transfatTemp,
-              this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
-              this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg, 
-              this.state.breadSelArr, meatSelArr, vegSelArr, sauceSelArr, drinkSelArr, 
-              sideSelArr)
-          }}
-        >
-          Double-Click to Calculate!
-        </button>
-        <button onClick={() => {
-
             this.addCaloriesBreads();
             this.addCaloriesMeats();
             this.addCaloriesVegs();
             this.addCaloriesSauces();
             this.addCaloriesDrinks();
             this.addCaloriesSides();
-            // this.sendThatData(this.state.caloriesTemp, this.state.proteinTemp,
-            //    this.state.sodiumTemp, this.state.transfatTemp,
-            //    this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
-            //    this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg, this.state.breadSelArr, meatSelArr, vegSelArr, sauceSelArr, drinkSelArr, sideSelArr)
-            this.setVals();
+            this.setSelectState()
+            this.sendThatData(this.state.favsArrstate, this.state.caloriesTemp, this.state.proteinTemp,
+              this.state.sodiumTemp, this.state.transfatTemp,
+              this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
+              this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg, 
+              this.state.breadSelArr, meatSelArr, vegSelArr, sauceSelArr, drinkSelArr, 
+              sideSelArr)  
+              this.setVals();
+          }}
+        >
+          Double-Click to Calculate!
+        </button>
 
-        }}>Shoe me the goods!</button></h6>
+<input></input>
+        <button onClick={() => { axios.put(`/api/favs/${this.state.selectedFavorite}`, {
+              id: this.state.selectedFavorite,
+              bread: this.state.updateBread,
+              meat: this.state.updateMeat,
+              veg: this.state.updateVeg,
+              sauce: this.state.updateSauce,
+              drink: this.state.updateDrink,
+              side: this.state.updateSide,
+            }
+            )
+            .catch(err => {
+              console.log(err);
+            });
+            
+            
+          
+
+
+        }}>Edit your favorite!</button></h6>
+
+        <button onClick={() => {
+        
+            axios.delete(`/api/favs/${this.state.selectedFavorite}`)
+            .catch(err => {
+              console.log(err);
+            });
+            // this.setVals();
+            
+          
+
+}}>Delete your favorite!</button>
         <div className = "tableHolder">
           <br></br> 
             <br></br>
             <br></br>
-            <br></br>
-            <br></br>
+
+
             
        {/* <h6>
          <Table 

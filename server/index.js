@@ -6,6 +6,8 @@ const {
   getPlaces,
   addToFavorites,
   getFavorites,
+  editFavs,
+  deleteFavs
 } = require("./controller");
 
 const {
@@ -26,6 +28,13 @@ app.post("/api/places", addPlace);
 app.get("/api/places", getPlaces);
 app.post("/api/favs", addToFavorites);
 app.get("/api/favs", getFavorites);
+
+
+
+app.put("/api/favs/:input", editFavs);
+app.delete("/api/favs/:input", deleteFavs);
+
+
 app.get("/api/ingredients/meat", getMeat);
 app.get("/api/ingredients/veg", getVeg);
 app.get("/api/ingredients/sauce", getSauce);
@@ -34,11 +43,12 @@ app.get("/api/ingredients/side", getSide);
 app.get("/api/ingredients/drink", getDrink);
 
 
-app.get("/api/favorites", getFavs);
+// app.get("/api/favorites", getFavs);
 
-app.post("/api/favorites", addFavs)
-// app.delete("/api/favorites/:id", deleteFavs)
-// app.put("/api/favorites/", editFavs)
+// app.post("/api/favorites", addFavs);
+
+
+
 
 
 

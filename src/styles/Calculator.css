@@ -8,36 +8,63 @@
   cursor: pointer;
 }
 .places__card {
-  border: 1px solid black;
+  border: 1px solid yellow;
   display: flex;
   flex-direction: column;
   height: 40vh;
   justify-content: space-between;
   align-items: center;
+  max-width: 99vw;
 }
 .ingredients__container {
-  border: dashed yellow;
+  margin-left: 27vw;
+  /* border: dashed purple; */
   display: flex;
+  max-width: 45vw;
   
 }
 
 .tableHolder {
-  border: dashed green;
+  /* border: dashed green; */
   display:flex;
   flex-direction: column;
+  margin-top: 14vh;
   
  
 }
 
 .buttonHolder {
-  border: dashed red;
+  justify-self: center;
+  margin-left: 25vw;
+  border: dashed blue;
   display: flex;
   flex-direction: column;
   justify-items: auto;
+  width: 50%;
 
 }
 .calculatorHolder {
   display:flex;
   flex-direction: column;
-  border: dashed black;
+  /* border: dashed yellow; */
+  max-width: 95vw;
+}
+
+.table_box {
+  width: 75vw;
+  margin-left: 13vw;
+}
+
+.pokewich{
+    max-width: 150px;
+    height: auto;
+}
+
+.form-control{
+  max-width: 99vw;
+}
+
+.clear_button{
+  max-width: 50vw;
+  margin-left: 24vw;
 }

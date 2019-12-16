@@ -28,7 +28,7 @@ let sideSelArr = [];
 var breadSelectArr = [];
 let favsArr = [];
 let favsArr2 = [];
-let id = 0;
+let id = -1;
 
 
 
@@ -70,6 +70,7 @@ class Calculator extends React.Component {
       breadSelArr: [],
       reset: null,
       favsArrstate: [],
+      favInput: ""
     };
     // this.addToFavorites = this.addToFavorites.bind(this);
     this.addCaloriesMeats = this.addCaloriesMeats.bind(this);
@@ -178,7 +179,7 @@ class Calculator extends React.Component {
         this.setState({ caloriesTemp: 0 });
         this.setState({ proteinTemp: 0 });
         this.setState({ sodiumTemp: 0 });
-        this.setState({ transfatsTemp: 0 });
+        this.setState({ transfatTemp: 0 });
         // this.setState({ selectedBread: ""})
         // this.setState({ selectedMeat: ""})
         // this.setState({ selectedVeg: ""})
@@ -674,14 +675,16 @@ class Calculator extends React.Component {
           >
             Add Me Up!
         </button>
+        <input  name="favinput"
+                className="form-control"
+                onChange={e => this.setState({ favInput: e.target.value })}></input>
           <button onClick={() => {
-            // this.sendThatData(this.state.favsArrstate)
-            // this.addToFavs2()
-            id++
-            console.log("Pushing to favoritesAPI",  id,  this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
+ id++
+            console.log("Pushing to favoritesAPI",  id, this.state.input, this.state.selectedBread, this.state.selectedDrink, this.state.selectedMeat,
             this.state.selectedSauce, this.state.selectedSide, this.state.selectedVeg )
             axios.post('/api/favs', {
               id: id,
+              input: this.state.favInput,
               bread: this.state.selectedBread,
               meat: this.state.selectedMeat,
               veg: this.state.selectedVeg,
@@ -689,20 +692,31 @@ class Calculator extends React.Component {
               drink: this.state.selectedDrink,
               side: this.state.selectedSide,
             }
+            
             )
             .catch(err => {
               console.log(err);
             });
-            // this.setVals();
+          
             
           }
           }>Save your Favorite!</button></h6>
+                    <button
+                    className= "clear_button"
+            onClick={() => {
+
+              this.setVals();
+
+            }}
+          >
+            Clear the field!
+        </button>
         <div className="tableHolder">
           <br></br>
           <br></br>
           <br></br>
-          <br></br>
-          <br></br>
+
+
 
 
         </div>

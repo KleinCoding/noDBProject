@@ -9,6 +9,7 @@ import "./styles/App.css";
 import AddPlace from "./components/AddPlace";
 import Table from './components/Table';
 import FavoritesHolder from './components/FavoritesHolder'
+import poketitle from './Pokewich.png'
 
 
 ////TESTING DROP DOWNS
@@ -203,12 +204,29 @@ class App extends React.Component {
     return (
       <div>
         <header>
-          <button onClick={() => this.setState({ currentView: "favs" })}>
+          <nav class = "navbar">
+    <img 
+    className ="pokewich"
+    src = {poketitle}></img>
+    <ul class="nav-links">
+
+    <li class="nav-item" onClick={() => this.setState({currentView: "calculator"})}><a href="#">Calculator</a></li>
+      <li class="nav-item"onClick ={() => this.setState({currentView: "favs"})}><a href="#">Favorites</a></li>
+
+
+
+
+
+    </ul>
+  </nav>
+        
+          
+          {/* <button onClick={() => this.setState({ currentView: "favs" })}>
             Favorites
           </button>
           <button onClick={() => this.setState({ currentView: "calculator" })}>
             Calculator
-          </button>
+          </button> */}
         </header>
         <main>
           
@@ -253,9 +271,9 @@ class App extends React.Component {
 
           ) : (
             <div className="favoritesHolder"> 
-<button onClick={() => this.setState({ currentView: "calculator" })}>
+{/* <button onClick={() => this.setState({ currentView: "calculator" })}>
             Calculator
-          </button>
+          </button> */}
             <FavoritesHolder
             favsArrtemp={this.state.favsArrstate}
             callbackFunc={this.callbackFunc}
@@ -265,7 +283,7 @@ class App extends React.Component {
           )}
          
         </main>
-    
+    <div className = "table_box"> 
         <Table 
               caloriesCalc={this.state.caloriesCalc}
               proteinCalc={this.state.proteinCalc}
@@ -287,7 +305,7 @@ class App extends React.Component {
 
               
         /> 
-
+</div>
 
       </div>
     );
